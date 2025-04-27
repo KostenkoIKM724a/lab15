@@ -7,7 +7,7 @@ void bubbleSort(int a[], int n) {
     int buff;
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
-            if (a[j] > a[j + 1]) {
+            if (a[j] < a[j + 1]) {
                 buff = a[j];
                 a[j] = a[j + 1];
                 a[j + 1] = buff;
@@ -18,18 +18,18 @@ void bubbleSort(int a[], int n) {
 
 // Selection Sort
 void selectionSort(int a[], int n) {
-    int min, buff;
+    int max, buff;
     for (int i = 0; i < n - 1; i++) {
-        min = i;
+        max = i;
         for (int j = i + 1; j < n; j++) {
-            if (a[j] < a[min]) {
-                min = j;
+            if (a[j] > a[max]) { 
+                max = j;
             }
         }
-        if (min != i) {
+        if (max != i) {
             buff = a[i];
-            a[i] = a[min];
-            a[min] = buff;
+            a[i] = a[max];
+            a[max] = buff;
         }
     }
 }
@@ -40,7 +40,7 @@ void insertionSort(int a[], int n) {
     for (int i = 1; i < n; i++) {
         buff = a[i];
         j = i - 1;
-        while (j >= 0 && a[j] > buff) {
+        while (j >= 0 && a[j] < buff) {
             a[j + 1] = a[j];
             j--;
         }
@@ -55,8 +55,8 @@ void quickSort(int* a, int n) {
     int mid = a[n / 2];
 
     do {
-        while (a[i] < mid) i++;
-        while (a[j] > mid) j--;
+        while (a[i] > mid) i++;
+        while (a[j] < mid) j--; 
         if (i <= j) {
             int tmp = a[i];
             a[i] = a[j];
